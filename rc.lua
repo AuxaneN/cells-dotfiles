@@ -106,17 +106,13 @@ require("module.dynamic-wallpaper")
 
 -- }}}
 
-
-
 -- {{{ Wibar
-
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock(
-    {format="<big>%d</big>"}
-)
+local format = "<span size='large' weight='ultrabold'>%H:%M</span>"
+mytextclock = wibox.widget.textclock(format)
 
 screen.connect_signal("request::desktop_decoration", function(s)
     -- Each screen has its own tag table.
@@ -250,7 +246,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
         height = 35,
             widget   = {
             layout = wibox.layout.align.horizontal,
-            expand = "outer",
+            expand = "none",
 
             { -- Left widgets
                 widget = wibox.container.margin,
@@ -711,6 +707,6 @@ end
 
 -- Autostart applications 
 awful.spawn.with_shell("picom")
--- awful.spawn("firefox")
--- awful.spawn("code-oss")
--- awful.spawn("discord")
+awful.spawn("firefox")
+awful.spawn("code-oss")
+awful.spawn("discord")
