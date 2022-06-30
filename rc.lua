@@ -18,7 +18,7 @@ local ruled = require("ruled")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
---rules 
+--rules
 -- require("layout.rules")
 
 -- Configuration
@@ -55,7 +55,7 @@ end)
 beautiful.init("/home/owen/.config/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "kitty"
+terminal = "terminal"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -170,7 +170,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
         spacing = 20,
         layout  = wibox.layout.fixed.horizontal,
         widget_template = {
-            {  
+            {
                 {
                     {
                         {
@@ -213,7 +213,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
         -- Notice that there is *NO* wibox.wibox prefix, it is a template,
         -- not a widget instance.
         widget_template = {
-            {  
+            {
                 {
                     {
                         {
@@ -237,7 +237,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
             widget = wibox.container.margin
         },
     }
-    
+
     -- Create the wibox
     s.mywibox = awful.wibar {
         position = "top",
@@ -277,7 +277,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
                     brightness_widget{
                         type = 'arc',
                         program = 'brightnessctl',
-                        step = 2,        
+                        step = 2,
                     },
                     volume_widget{
                         widget_type = 'arc'
@@ -358,13 +358,13 @@ awful.keyboard.append_global_keybindings({
 
 -- Focus related keybindings
 awful.keyboard.append_global_keybindings({
-    awful.key({ modkey,           }, "j",
+    awful.key({ modkey,           }, "k",
         function ()
             awful.client.focus.byidx( 1)
         end,
         {description = "focus next by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "k",
+    awful.key({ modkey,           }, "j",
         function ()
             awful.client.focus.byidx(-1)
         end,
@@ -617,7 +617,7 @@ client.connect_signal("request::titlebars", function(c)
     awful.titlebar(c, {
         size = 20,
         position = "left"
-        
+
     }).widget = {
         { -- Middle
             buttons = buttons,
@@ -665,7 +665,7 @@ client.connect_signal("mouse::enter", function(c)
 end)
 
 
--- Add rounded corners to clients 
+-- Add rounded corners to clients
 client.connect_signal("manage", function (c)
     c.shape = gears.shape.rounded_rect
 end)
@@ -685,7 +685,7 @@ if(screenAmount >= 2) then
     ruled.client.append_rule {
         rule_any    = {
                 class = {
-                    "code-oss",
+                    "atom-beta",
                     "firefox",
                 }
             },
@@ -705,8 +705,8 @@ end
 
 
 
--- Autostart applications 
+-- Autostart applications
 awful.spawn.with_shell("picom")
 awful.spawn("firefox")
-awful.spawn("code-oss")
+awful.spawn("atom-beta")
 awful.spawn("discord")
